@@ -80,6 +80,30 @@ public class ButtonManager : MonoBehaviour
                     rect.anchoredPosition = place;
                     btext = newbut.transform.GetChild(0).GetComponent<Text>();
                     btext.text = role[i].name;
+                }else if (i > 17 && i <= 23)
+                {
+                Vector3 place = new Vector3((i - 3 * buttonfixoff) * 200, -50) + offset;
+                newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
+                RectTransform rect = (RectTransform)newbut.transform;
+                rect.anchoredPosition = place;
+                btext = newbut.transform.GetChild(0).GetComponent<Text>();
+                btext.text = role[i].name;
+                }else if (i > 23 && i <= 29)
+                {
+                Vector3 place = new Vector3((i - 4 * buttonfixoff) * 200, 0) + offset;
+                newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
+                RectTransform rect = (RectTransform)newbut.transform;
+                rect.anchoredPosition = place;
+                btext = newbut.transform.GetChild(0).GetComponent<Text>();
+                btext.text = role[i].name;
+                }else if (i > 29 && i <= 35)
+                {
+                Vector3 place = new Vector3((i - 5 * buttonfixoff) * 200, 50) + offset;
+                newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
+                RectTransform rect = (RectTransform)newbut.transform;
+                rect.anchoredPosition = place;
+                btext = newbut.transform.GetChild(0).GetComponent<Text>();
+                btext.text = role[i].name;
                 }
         }
     }

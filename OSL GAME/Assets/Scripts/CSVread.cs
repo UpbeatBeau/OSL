@@ -5,7 +5,7 @@ using System;
 
 public class CSVread : MonoBehaviour
 {
-    public TextAsset TextAssetData;
+    private TextAsset TextAssetData;
     public TextAsset DraftOrderData;
     public PlayerObj[] clone;
     public int tableSize;
@@ -42,6 +42,7 @@ public class CSVread : MonoBehaviour
 
     void ReadCSV()
     {
+        TextAssetData = Resources.Load<TextAsset>("OSLDraft");
         string[] data = TextAssetData.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
 
         tableSize = data.Length / 2 - 1;//data.lenght divided by column number minus the header row
@@ -83,6 +84,7 @@ public class CSVread : MonoBehaviour
     }
     void ReadCSVTeams()
     {
+        DraftOrderData = Resources.Load<TextAsset>("OSLOrder");
         draftOrder = DraftOrderData.text.Split(new string[] { ",", "\n" }, StringSplitOptions.RemoveEmptyEntries);
         Order = new Queue<string>();
 
