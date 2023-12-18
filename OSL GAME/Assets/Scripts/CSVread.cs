@@ -89,7 +89,7 @@ public class CSVread : MonoBehaviour
 
         draftTableSize = draftOrder.Length-1;
         Debug.Log(draftTableSize);
-        for (int i = 1; i < tableSize; i++)
+        for (int i = 0; i < draftTableSize; i++)
         {
             //Debug.Log(draftOrder[i]);
             Order.Enqueue(draftOrder[i]);

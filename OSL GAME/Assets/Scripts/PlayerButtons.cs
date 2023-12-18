@@ -26,7 +26,7 @@ public class PlayerButtons : MonoBehaviour
         csv = GameManager.instance.GetComponent<CSVread>();
         string draftTeam = tm.currentTeam.teamName;
         targetplayername = EventSystem.current.currentSelectedGameObject.transform.GetComponentInChildren<Text>().text;
-        Debug.Log("Target Player" + targetplayername);
+        //Debug.Log("Target Player" + targetplayername);
         for(int i = 0;i < csv.clone.Length; i++)
         {
             if(csv.clone[i].playerName == targetplayername)
