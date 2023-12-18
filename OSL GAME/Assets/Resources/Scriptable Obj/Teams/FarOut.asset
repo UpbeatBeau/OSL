@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41938cdb691a5f849b8015ecd00b2981, type: 3}
   m_Name: FarOut
   m_EditorClassIdentifier: 
-  teamName: Far Out
+  teamName: Far
   teamColor: {r: 0.21560162, g: 0.8018868, b: 0.27912998, a: 0}
   logo: {fileID: 21300000, guid: 0ac5d62ead91c9944b133827453da86c, type: 3}
   onClock: 0
-  draftedPlayers: []
+  draftedPlayers:
+  - Bao
+  - Bao

@@ -24,7 +24,8 @@ public class PlayerButtons : MonoBehaviour
         gm = GameManager.instance.GetComponent<GameManager>();
         tm = GameManager.instance.GetComponent<TeamManager>();
         csv = GameManager.instance.GetComponent<CSVread>();
-        string draftTeam = tm.currentTeam.teamName;
+        string draftTeam = tm.currentTeam.teamName.Trim();
+        Debug.Log(draftTeam);
         targetplayername = EventSystem.current.currentSelectedGameObject.transform.GetComponentInChildren<Text>().text;
         //Debug.Log("Target Player" + targetplayername);
         for(int i = 0;i < csv.clone.Length; i++)

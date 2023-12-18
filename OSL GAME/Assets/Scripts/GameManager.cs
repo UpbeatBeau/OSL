@@ -103,11 +103,11 @@ public class GameManager : MonoBehaviour
     public void nextTeam()
     {
         man.currentTeam = next;
-        Debug.Log(csv.Order.Peek());
+        //Debug.Log(csv.Order.Peek());
         string path = "Scriptable Obj/Teams/" + csv.Order.Dequeue().Trim();
-        Debug.Log(path);
+        //Debug.Log(path);
         next = Resources.Load<Team>(path);
-        Debug.Log(next.teamName);
+        //Debug.Log(next.teamName);
         man.UpdateTeam();
     }
 
