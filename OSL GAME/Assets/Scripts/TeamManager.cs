@@ -9,11 +9,13 @@ public class TeamManager : MonoBehaviour
 
     public Text teamName;
     public Image teamlogo;
+    public Text pick1;
 
 
     // Start is called before the first frame update
     void Start()
     {
+       
         UpdateTeam();
     }
 

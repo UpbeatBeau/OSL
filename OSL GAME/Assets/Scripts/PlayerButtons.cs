@@ -29,9 +29,11 @@ public class PlayerButtons : MonoBehaviour
             if(csv.clone[i].playerName == targetplayername)
             {
                 tm.currentTeam.draftedPlayers.Add(csv.clone[i]);
+                tm.pick1.text = csv.clone[i].playerName;
             }
         }
         Destroy(EventSystem.current.currentSelectedGameObject);
+        
         
     }
 
