@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public float draftTime = 10;
+    public float draftTime;
     public bool timerOn = true;
+    public bool isPicking = false;
+    public float maxTime;
     public Text timerText;
-    public TeamManager man;
+    private TeamManager man;
     public Team next;
     public Canvas onClockCan;
     public Canvas pickIsInCan;
@@ -28,28 +30,31 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        man = this.GetComponent<TeamManager>();
         timerOn = true;
+        draftTime = maxTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (draftTime > 0)
+        if (draftTime > 0 && timerOn)
         {
             draftTime -= Time.deltaTime;
             TimerTick(draftTime);
         }
-        else
+        else if (!isPicking)
         {
-            nextTeam();
+            Onclockon();
+            PickIn();
             draftTime = 0;
             timerOn = false;
+            isPicking = true;
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Onclockon();
-            PickIn();
+            draftTime = 0;
         }
  
         
@@ -67,8 +72,8 @@ public class GameManager : MonoBehaviour
 
     public void nextTeam()
     {
-        man.GetComponent<TeamManager>().currentTeam = next;
-        man.GetComponent<TeamManager>().UpdateTeam();
+        man.currentTeam = next;
+        man.UpdateTeam();
     }
 
     public void Onclockon()

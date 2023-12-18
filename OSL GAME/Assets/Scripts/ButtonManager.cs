@@ -7,80 +7,79 @@ public class ButtonManager : MonoBehaviour
 {
 
     public GameObject button;
+    
     private CSVread gm;
     private Text btext;
     private GameObject newbut;
     public Transform WhereYouWantButtonsParented;
     public Vector3 offset;
-    public string possitionForNow;
-
-    public int width;
-    public int height;
-
-    private int[,] grid;
-
-    private List<GameObject> spawnButton = new List<GameObject>();
-
+    public string roleyouWant;
+    public int buttonfixoff = 6;
+    
     private void Awake()
     {
         WhereYouWantButtonsParented = this.transform;
-        offset = new Vector3(-600, 0, 0);
-        
-        grid = new int[width, height];
-
-        for (var x = 0; x < width; x++)
-        {
-            for (var y = 0; y < height; y++)
-            {
-                grid[x, y] = 0;
-            }
-        }
+        offset = new Vector3(-540,320, 0);
+       
         //UpdateDisplay();
     }
     private void Start()
     {
+        
         gm = GameManager.instance.GetComponent<CSVread>();
+        
 
-        MakePlayersButton(possitionForNow);
+        switch (roleyouWant) {
+            case "adc":
+                MakePlayersButton(gm.osladcList);
+                break;
+            case "support":
+                MakePlayersButton(gm.oslsuppList);
+                break;
+            case "mid":
+                MakePlayersButton(gm.oslmidList);
+                break;
+            case "jungle":
+                MakePlayersButton(gm.osljungList);
+                break;
+            case "solo":
+                MakePlayersButton(gm.oslsoloList);
+                break;
+        }
     }
 
-    void MakePlayersButton(string role)
+    void MakePlayersButton(List<CSVread.Player> role)
     {
-        for (int i = 0; i < gm.tableSize; i++)
+        for (int i = 0; i < role.Count; i++)
         {
-            Debug.Log(gm.clone[i].playerPos);
-            Debug.Log(role);
-            if(role == gm.clone[i].playerPos.Trim())
-            {
-                Debug.Log("WOOOOOOOOOT");
-            }
-
-                if (i <= 6 && gm.clone[i].playerPos.Trim() == role)
+            //Debug.Log(gm.clone[i].playerPos);
+            //Debug.Log(role);
+                if (i <= 5)
                 {
-                    Vector3 place = new Vector3(i * 200, 350) + offset;
+                    Vector3 place = new Vector3(i * 200, 0) + offset;
                     newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                     RectTransform rect = (RectTransform)newbut.transform;
                     rect.anchoredPosition = place;
                     btext = newbut.transform.GetChild(0).GetComponent<Text>();
-                    btext.text = gm.clone[i].playerName;
+                    btext.text = role[i].name;
                 }
-                else if (i > 6 && i <= 12 && gm.clone[i].playerPos.Trim() == role)
+                else if (i > 5 && i <= 11)
                 {
-                    Vector3 place = new Vector3((i - 7) * 200, 300) + offset;
+                    Vector3 place = new Vector3((i - buttonfixoff) * 200, -50) + offset;
                     newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                     RectTransform rect = (RectTransform)newbut.transform;
                     rect.anchoredPosition = place;
                     btext = newbut.transform.GetChild(0).GetComponent<Text>();
-                    btext.text = gm.clone[i].playerName;
+                    btext.text = role[i].name;
                 }
-                else if (i > 12 && i <= 18 && gm.clone[i].playerPos.Trim() == role)
+                else if (i > 11 && i <= 17)
                 {
-                    Vector3 place = new Vector3((i - 13) * 200, 250) + offset;
+                    Vector3 place = new Vector3((i - 2*buttonfixoff) * 200, -100) + offset;
                     newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                     RectTransform rect = (RectTransform)newbut.transform;
                     rect.anchoredPosition = place;
                     btext = newbut.transform.GetChild(0).GetComponent<Text>();
-                    btext.text = gm.clone[i].playerName;
+                    btext.text = role[i].name;
                 }
         }
     }
