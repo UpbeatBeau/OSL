@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public Team next;
     public Canvas onClockCan;
     public Canvas pickIsInCan;
+    public Object[] clearTeam;
+    public CSVread csv;
     private void Awake()
     {
         if(instance == null)
@@ -30,9 +32,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        csv = this.GetComponent<CSVread>();
         man = this.GetComponent<TeamManager>();
         timerOn = true;
         draftTime = maxTime;
+        clearTeam = Resources.LoadAll<Team>("Scriptable Obj/Teams");
+        foreach(Team t in clearTeam)
+        {
+            //Debug.Log(t.name);
+            t.draftedPlayers.Clear();
+        }
     }
 
     // Update is called once per frame
@@ -60,6 +69,27 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void UpdateDraftedPlayers(string team)
+    {
+        //Debug.Log("YOU DRAFTED");
+        Text listofdrafted;
+        List <string> teamList;
+        listofdrafted = onClockCan.transform.Find(team).GetChild(0).GetComponent<Text>();
+        teamList = man.currentTeam.draftedPlayers;
+        listofdrafted.text = ListToPlayerText(teamList);
+    }
+
+    private string ListToPlayerText(List<string> list)
+    {
+        string result = "";
+        foreach(var listMember in list)
+        {
+            //Debug.Log(listMember.playerName);
+            result += listMember + "\n";
+        }
+        return result;
+        }
+
     void TimerTick(float currentTime)
     {
         currentTime += 1;
@@ -73,6 +103,7 @@ public class GameManager : MonoBehaviour
     public void nextTeam()
     {
         man.currentTeam = next;
+        next = Resources.Load<Team>("Scriptable Obj/Teams/" + csv.Order.Dequeue());
         man.UpdateTeam();
     }
 

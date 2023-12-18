@@ -6,8 +6,12 @@ using System;
 public class CSVread : MonoBehaviour
 {
     public TextAsset TextAssetData;
+    public TextAsset DraftOrderData;
     public PlayerObj[] clone;
     public int tableSize;
+    public int draftTableSize;
+    public string[] draftOrder;
+    
 
     [System.Serializable]
     public class Player
@@ -21,16 +25,19 @@ public class CSVread : MonoBehaviour
         public Player[] player;
     }
 
+
     public PlayerList oslList = new PlayerList();
     public List<Player> osladcList = new List<Player>(); //adc list
     public List<Player> oslsuppList = new List<Player>(); // supp list
     public List<Player> osljungList = new List<Player>(); // jung list
-    public List<Player> oslmidList = new List<Player>();
+    public List<Player> oslmidList = new List<Player>(); // mid list
     public List<Player> oslsoloList = new List<Player>();
+    public Queue<string> Order;//draft order
     // Start is called before the first frame update
     void Awake()
     {
         ReadCSV();
+        ReadCSVTeams();
     }
 
     void ReadCSV()
@@ -51,7 +58,7 @@ public class CSVread : MonoBehaviour
             clone[i] = ScriptableObject.CreateInstance<PlayerObj>();
             clone[i].playerName = oslList.player[i].name;
             clone[i].playerPos = oslList.player[i].role;
-            string rolecheck = oslList.player[i].role;
+            string rolecheck = oslList.player[i].role.Trim();
             switch (rolecheck)
             {
                 case "adc":
@@ -73,5 +80,21 @@ public class CSVread : MonoBehaviour
             }
         }
        
+    }
+    void ReadCSVTeams()
+    {
+        draftOrder = DraftOrderData.text.Split(new string[] { ",", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+        Order = new Queue<string>();
+
+
+        draftTableSize = draftOrder.Length-1;
+        Debug.Log(draftTableSize);
+        for (int i = 1; i < tableSize; i++)
+        {
+            //Debug.Log(draftOrder[i]);
+            Order.Enqueue(draftOrder[i]);
+            
+        }
+
     }
 }

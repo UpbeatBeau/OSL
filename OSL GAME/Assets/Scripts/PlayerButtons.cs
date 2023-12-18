@@ -21,18 +21,25 @@ public class PlayerButtons : MonoBehaviour
 
     public void DraftMe()
     {
+        gm = GameManager.instance.GetComponent<GameManager>();
         tm = GameManager.instance.GetComponent<TeamManager>();
         csv = GameManager.instance.GetComponent<CSVread>();
+        string draftTeam = tm.currentTeam.teamName;
         targetplayername = EventSystem.current.currentSelectedGameObject.transform.GetComponentInChildren<Text>().text;
+        Debug.Log("Target Player" + targetplayername);
         for(int i = 0;i < csv.clone.Length; i++)
         {
             if(csv.clone[i].playerName == targetplayername)
             {
-                tm.currentTeam.draftedPlayers.Add(csv.clone[i]);
-                tm.pick1.text = csv.clone[i].playerName;
+                //Debug.Log("added");
+                tm.currentTeam.draftedPlayers.Add(csv.clone[i].playerName);
+                //tm.pick1.text = csv.clone[i].playerName;
             }
         }
+        //Debug.Log(draftTeam);
+        gm.UpdateDraftedPlayers(draftTeam);
         Destroy(EventSystem.current.currentSelectedGameObject);
+
         
         
     }

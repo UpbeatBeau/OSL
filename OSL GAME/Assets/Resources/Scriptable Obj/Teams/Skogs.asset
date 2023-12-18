@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41938cdb691a5f849b8015ecd00b2981, type: 3}
+  m_Name: Skogs
+  m_EditorClassIdentifier: 
+  teamName: Skogs
+  teamColor: {r: 0.11372549, g: 0.3254902, b: 0.99215686, a: 0}
+  logo: {fileID: 21300000, guid: 3331888c5fc2ae6449ce7b6a3722f681, type: 3}
+  onClock: 0
+  draftedPlayers:
+  - Beau
+  - Beau
+  - Beau

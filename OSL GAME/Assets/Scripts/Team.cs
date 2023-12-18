@@ -10,5 +10,5 @@ public class Team : ScriptableObject
     public Color teamColor;
     public Sprite logo;
     public bool onClock;
-    public List<PlayerObj> draftedPlayers;
+    public List<string> draftedPlayers;
 }
