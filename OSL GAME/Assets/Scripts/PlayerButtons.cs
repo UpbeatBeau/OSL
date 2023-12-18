@@ -55,4 +55,11 @@ public class PlayerButtons : MonoBehaviour
         gm.isPicking = false;
         gm.timerOn = true;
     }
+
+    public void GoBack()
+    {
+        mycan.enabled = false;
+        gm = GameManager.instance.GetComponent<GameManager>();
+        gm.pickIsInCan.enabled = true;
+    }
 }
