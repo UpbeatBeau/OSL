@@ -17,7 +17,7 @@ public class TeamManager : MonoBehaviour
     void Start()
     {
        
-        UpdateTeam();
+        //UpdateTeam();
     }
 
    public void UpdateTeam()

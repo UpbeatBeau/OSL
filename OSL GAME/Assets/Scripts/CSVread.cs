@@ -38,6 +38,11 @@ public class CSVread : MonoBehaviour
     {
         ReadCSV();
         ReadCSVTeams();
+        //GameManager.instance.GetComponent<GameManager>().nextTeam();
+    }
+    private void Start()
+    {
+        GameManager.instance.GetComponent<GameManager>().nextTeam();
     }
 
     void ReadCSV()
@@ -91,12 +96,12 @@ public class CSVread : MonoBehaviour
 
         draftTableSize = draftOrder.Length-1;
         Debug.Log(draftTableSize);
-        for (int i = 0; i < draftTableSize; i++)
+        for (int i = 0; i <= draftTableSize; i++)
         {
             //Debug.Log(draftOrder[i]);
             Order.Enqueue(draftOrder[i]);
             
         }
-
+        //GameManager.instance.GetComponent<GameManager>().nextTeam();
     }
 }

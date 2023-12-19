@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System.IO;
+using System.Globalization;
+
+
 
 public class GameManager : MonoBehaviour
 {
@@ -43,6 +48,8 @@ public class GameManager : MonoBehaviour
             //Debug.Log(t.name);
             t.draftedPlayers.Clear();
         }
+        File.Create(@fileDraft);
+
     }
 
     // Update is called once per frame
@@ -106,13 +113,22 @@ public class GameManager : MonoBehaviour
 
     public void nextTeam()
     {
-        man.currentTeam = next;
+
         //Debug.Log(csv.Order.Peek());
-        string path = "Scriptable Obj/Teams/" + csv.Order.Dequeue().Trim();
-        //Debug.Log(path);
-        next = Resources.Load<Team>(path);
-        //Debug.Log(next.teamName);
-        man.UpdateTeam();
+        if (csv.Order.Count != 0)
+        {
+            string path = "Scriptable Obj/Teams/" + csv.Order.Dequeue().Trim();
+            //Debug.Log(path);
+            next = Resources.Load<Team>(path);
+            man.currentTeam = next;
+            //Debug.Log(next.teamName);
+            man.UpdateTeam();
+        }
+        else
+        {
+            EndDraft();
+           //SceneManager.LoadScene("DraftOver");
+        }
     }
 
     public void Onclockon()
@@ -138,4 +154,34 @@ public class GameManager : MonoBehaviour
             pickIsInCan.enabled = false;
         }
     }
+
+    List<string> finalTeams;
+    string fileDraft = "/DraftResults.csv";
+    
+    
+    
+    public void EndDraft()
+    {
+         string path = Application.dataPath + "/Data/" + fileDraft;
+        
+        StreamWriter writer = new StreamWriter(path);
+        //CsvWriter fileWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
+        writer.WriteLine("OSLDRAFT\n");
+        foreach (Team t in clearTeam)
+        {
+
+            writer.WriteLine(t.teamName);
+            //fileWriter.WriteRecords(t.draftedPlayers);
+            for (int i = 0; i < t.draftedPlayers.Count; i++)
+            {
+               writer.WriteLine(t.draftedPlayers[i]);
+            }
+            writer.WriteLine("\n");
+            writer.Flush();
+            
+        }
+        writer.Close();
+
+    }
+    
 }
