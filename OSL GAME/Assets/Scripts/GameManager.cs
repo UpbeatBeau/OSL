@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -75,9 +76,9 @@ public class GameManager : MonoBehaviour
     public void UpdateDraftedPlayers(string team)
     {
         //Debug.Log("YOU DRAFTED");
-        Text listofdrafted;
+        TextMeshProUGUI listofdrafted;
         List <string> teamList;
-        listofdrafted = onClockCan.transform.Find(team).GetChild(0).GetComponent<Text>();
+        listofdrafted = onClockCan.transform.Find(team).GetChild(0).GetComponent<TextMeshProUGUI>();
         teamList = man.currentTeam.draftedPlayers;
         listofdrafted.text = ListToPlayerText(teamList);
     }
