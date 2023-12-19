@@ -51,6 +51,9 @@ public class GameManager : MonoBehaviour
         {
             draftTime -= Time.deltaTime;
             TimerTick(draftTime);
+        }else if(draftTime > 0 && !timerOn)
+        {
+            timerText.text = "Waiting!";
         }
         else if (!isPicking)
         {

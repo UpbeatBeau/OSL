@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class RoleButtonManager : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class RoleButtonManager : MonoBehaviour
     public void ChooseRole()
     {
         gm = GameManager.instance.GetComponent<GameManager>();
-        goal = EventSystem.current.currentSelectedGameObject.transform.GetComponentInChildren<Text>().text;
+        goal = EventSystem.current.currentSelectedGameObject.transform.GetComponentInChildren<TextMeshProUGUI>().text;
         Debug.Log(goal);
         roleCan = GameObject.Find(goal).GetComponent<Canvas>();
         roleCan.enabled = true;
