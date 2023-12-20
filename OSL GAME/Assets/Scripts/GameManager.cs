@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System.Globalization;
+using System;
 
 
 
@@ -16,13 +17,19 @@ public class GameManager : MonoBehaviour
     public bool timerOn = true;
     public bool isPicking = false;
     public float maxTime;
-    public Text timerText;
+    public TextMeshProUGUI timerText;
     private TeamManager man;
-    public Team next;
+    public TeamOBJ next;
     public Canvas onClockCan;
     public Canvas pickIsInCan;
-    public Object[] clearTeam;
+    public UnityEngine.Object[] clearTeam;
     public CSVread csv;
+    public Canvas draftTeam;
+    public TextMeshProUGUI tmp;
+    public List<PlayerObj> lastDrafted;
+    public TextMeshProUGUI lastone;
+    public List<TeamOBJ> lasttopick;
+    
     private void Awake()
     {
         if(instance == null)
@@ -42,13 +49,14 @@ public class GameManager : MonoBehaviour
         man = this.GetComponent<TeamManager>();
         timerOn = true;
         draftTime = maxTime;
-        clearTeam = Resources.LoadAll<Team>("Scriptable Obj/Teams");
-        foreach(Team t in clearTeam)
+        clearTeam = Resources.LoadAll<TeamOBJ>("Scriptable Obj/Teams");
+        foreach(TeamOBJ t in clearTeam)
         {
             //Debug.Log(t.name);
             t.draftedPlayers.Clear();
         }
         File.Create(@fileDraft);
+        
 
     }
 
@@ -76,18 +84,32 @@ public class GameManager : MonoBehaviour
         {
             draftTime = 0;
         }
+        if (Input.GetKeyDown(KeyCode.D) && !isPicking)
+        {
+            draftTeam.enabled = true;
+            onClockCan.enabled = false;
+        }else if (Input.GetKeyUp(KeyCode.D) && !isPicking)
+        {
+            draftTeam.enabled = false;
+            onClockCan.enabled = true;
+        }else if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            FUCKEDIT();
+        }
  
         
     }
 
-    public void UpdateDraftedPlayers(string team)
+    public void UpdateDraftedPlayers(string TeamOBJ)
     {
         //Debug.Log("YOU DRAFTED");
         TextMeshProUGUI listofdrafted;
         List <string> teamList;
-        listofdrafted = onClockCan.transform.Find(team).GetChild(0).GetComponent<TextMeshProUGUI>();
+        listofdrafted = draftTeam.transform.Find(TeamOBJ).GetChild(0).GetComponent<TextMeshProUGUI>();
         teamList = man.currentTeam.draftedPlayers;
         listofdrafted.text = ListToPlayerText(teamList);
+        Debug.Log(lastDrafted[0].playerName);
+        lastone.text = lastDrafted[0].playerName;
     }
 
     private string ListToPlayerText(List<string> list)
@@ -117,18 +139,29 @@ public class GameManager : MonoBehaviour
         //Debug.Log(csv.Order.Peek());
         if (csv.Order.Count != 0)
         {
-            string path = "Scriptable Obj/Teams/" + csv.Order.Dequeue().Trim();
-            //Debug.Log(path);
-            next = Resources.Load<Team>(path);
+            
+            string path = "Scriptable Obj/Teams/" + csv.Order.First.Value.Trim();
+            
+            Debug.Log(path);
+            next = Resources.Load<TeamOBJ>(path);
             man.currentTeam = next;
             //Debug.Log(next.teamName);
             man.UpdateTeam();
+            
         }
         else
         {
             EndDraft();
            //SceneManager.LoadScene("DraftOver");
         }
+        MainTeam();
+    }
+
+    public void MainTeam()
+    {
+       
+        tmp.text = man.currentTeam.teamName;
+        tmp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ListToPlayerText(man.currentTeam.draftedPlayers);
     }
 
     public void Onclockon()
@@ -141,6 +174,7 @@ public class GameManager : MonoBehaviour
         {
             onClockCan.enabled = false;
         }
+        draftTeam.enabled = false;
     }
     
     public void PickIn()
@@ -153,6 +187,8 @@ public class GameManager : MonoBehaviour
         {
             pickIsInCan.enabled = false;
         }
+        draftTeam.enabled = false;
+        onClockCan.enabled = false;
     }
 
     List<string> finalTeams;
@@ -167,7 +203,7 @@ public class GameManager : MonoBehaviour
         StreamWriter writer = new StreamWriter(path);
         //CsvWriter fileWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
         writer.WriteLine("OSLDRAFT\n");
-        foreach (Team t in clearTeam)
+        foreach (TeamOBJ t in clearTeam)
         {
 
             writer.WriteLine(t.teamName);
@@ -181,6 +217,51 @@ public class GameManager : MonoBehaviour
             
         }
         writer.Close();
+
+    }
+
+    public void FUCKEDIT()
+    {
+        csv.MessedUp();
+        GameObject[] pbutts;
+        pbutts = GameObject.FindGameObjectsWithTag("Pbutt");
+        foreach (var p in pbutts)
+        {
+            Destroy(p);
+        }
+        lasttopick[0].draftedPlayers.RemoveAt(lasttopick[0].draftedPlayers.Count - 1);
+        UpdateDraftedPlayers(lasttopick[0].teamName);
+        lastone.text = "";
+        csv.Order.AddFirst(lasttopick[0].name);
+        nextTeam();
+        string rolecheck = lastDrafted[0].firstletter;
+        if (String.Compare(rolecheck, "a", true) >= 0 && String.Compare(rolecheck, "f", true) <= 0)
+        {
+            csv.osladcList.Add(csv.lastosldrafted.player[0]);
+        }
+        else if (String.Compare(rolecheck, "g", true) >= 0 && String.Compare(rolecheck, "l", true) <= 0)
+        {
+            csv.oslsuppList.Add(csv.lastosldrafted.player[0]);
+        }
+        else if (String.Compare(rolecheck, "m", true) >= 0 && String.Compare(rolecheck, "s", true) <= 0)
+        {
+            csv.oslmidList.Add(csv.lastosldrafted.player[0]);
+
+        }
+        else if (String.Compare(rolecheck, "t", true) >= 0 && String.Compare(rolecheck, "z", true) <= 0)
+        {
+            csv.osljungList.Add(csv.lastosldrafted.player[0]);
+        }
+        else
+        {
+            csv.osljungList.Add(csv.lastosldrafted.player[1]);
+        }
+        GameObject[] spawners;
+        spawners = GameObject.FindGameObjectsWithTag("Playerbutt");
+        foreach (var p in spawners)
+        {
+            p.GetComponent<ButtonManager>().UpdateDisplay();
+        }
 
     }
     

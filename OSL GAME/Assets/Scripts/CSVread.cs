@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Text;
 
 public class CSVread : MonoBehaviour
 {
@@ -32,7 +33,8 @@ public class CSVread : MonoBehaviour
     public List<Player> osljungList = new List<Player>(); // jung list
     public List<Player> oslmidList = new List<Player>(); // mid list
     public List<Player> oslsoloList = new List<Player>();
-    public Queue<string> Order;//draft order
+    public PlayerList lastosldrafted = new PlayerList();
+    public LinkedList<string> Order;//draft order
     // Start is called before the first frame update
     void Awake()
     {
@@ -64,25 +66,27 @@ public class CSVread : MonoBehaviour
             clone[i] = ScriptableObject.CreateInstance<PlayerObj>();
             clone[i].playerName = oslList.player[i].name;
             clone[i].playerPos = oslList.player[i].role;
-            string rolecheck = oslList.player[i].role.Trim();
-            switch (rolecheck)
+            clone[i].firstletter = oslList.player[i].name.Substring(0, 1);
+            string rolecheck = clone[i].firstletter;
+            if (String.Compare(rolecheck, "a",true) >= 0 && String.Compare(rolecheck, "f",true) <= 0)
             {
-                case "adc":
-                    osladcList.Add(oslList.player[i]);
-                    break;
-                case "supp":
-                    oslsuppList.Add(oslList.player[i]);
-                    break;
-                case "jung":
-                    osljungList.Add(oslList.player[i]);
-                    break;
-                case "mid":
-                    oslmidList.Add(oslList.player[i]);
-                    break;
-                case "solo":
-                    oslsoloList.Add(oslList.player[i]);
-                    break;
-
+                osladcList.Add(oslList.player[i]);
+            }else if (String.Compare(rolecheck, "g",true) >= 0 && String.Compare(rolecheck, "l",true)<= 0)
+            {
+                oslsuppList.Add(oslList.player[i]);
+            }
+            else if (String.Compare(rolecheck, "m", true) >= 0 && String.Compare(rolecheck, "s", true) <= 0)
+            {
+                oslmidList.Add(oslList.player[i]);
+                
+            }
+            else if (String.Compare(rolecheck, "t", true) >= 0 && String.Compare(rolecheck, "z", true) <= 0)
+            {
+                osljungList.Add(oslList.player[i]);
+            }
+            else
+            {
+                osljungList.Add(oslList.player[i]);
             }
         }
        
@@ -91,17 +95,37 @@ public class CSVread : MonoBehaviour
     {
         DraftOrderData = Resources.Load<TextAsset>("OSLOrder");
         draftOrder = DraftOrderData.text.Split(new string[] { ",", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-        Order = new Queue<string>();
-
+        Order = new LinkedList<string>();
+       
 
         draftTableSize = draftOrder.Length-1;
         Debug.Log(draftTableSize);
         for (int i = 0; i <= draftTableSize; i++)
         {
-            //Debug.Log(draftOrder[i]);
-            Order.Enqueue(draftOrder[i]);
+            
+            Order.AddLast(draftOrder[i]);
             
         }
+        Display(Order, "test");
         //GameManager.instance.GetComponent<GameManager>().nextTeam();
+    }
+
+    private static void Display(LinkedList<string> words, string test)
+    {
+        Console.WriteLine(test);
+        foreach (string word in words)
+        {
+            Console.Write(word + " ");
+        }
+        Console.WriteLine();
+        Console.WriteLine();
+    }
+
+    public void MessedUp()
+    {
+        lastosldrafted.player = new Player[1];
+        lastosldrafted.player[0] = new Player();
+        lastosldrafted.player[0].name = GameManager.instance.GetComponent<GameManager>().lastDrafted[0].playerName;
+        lastosldrafted.player[0].role = GameManager.instance.GetComponent<GameManager>().lastDrafted[0].playerPos;
     }
 }

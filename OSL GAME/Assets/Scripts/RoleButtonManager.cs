@@ -19,7 +19,7 @@ public class RoleButtonManager : MonoBehaviour
     public void ChooseRole()
     {
         gm = GameManager.instance.GetComponent<GameManager>();
-        goal = EventSystem.current.currentSelectedGameObject.transform.GetComponentInChildren<TextMeshProUGUI>().text;
+        goal = EventSystem.current.currentSelectedGameObject.GetComponent<ALPHABET>().rolecanTarget;
         Debug.Log(goal);
         roleCan = GameObject.Find(goal).GetComponent<Canvas>();
         roleCan.enabled = true;

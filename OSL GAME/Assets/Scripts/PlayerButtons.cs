@@ -34,15 +34,21 @@ public class PlayerButtons : MonoBehaviour
             {
                 //Debug.Log("added");
                 tm.currentTeam.draftedPlayers.Add(csv.clone[i].playerName);
+                gm.lastDrafted.Clear();
+                gm.lastDrafted.Add(csv.clone[i]);
                 //tm.pick1.text = csv.clone[i].playerName;
             }
         }
         //Debug.Log(draftTeam);
+
+        gm.lasttopick.Clear();
+        gm.lasttopick.Add(tm.currentTeam);
         gm.UpdateDraftedPlayers(draftTeam);
         Destroy(EventSystem.current.currentSelectedGameObject);
+        csv.Order.RemoveFirst();
 
-        
-        
+
+
     }
 
     public void NextTeam()

@@ -25,27 +25,8 @@ public class ButtonManager : MonoBehaviour
     }
     private void Start()
     {
-        
-        gm = GameManager.instance.GetComponent<CSVread>();
-        
-
-        switch (roleyouWant) {
-            case "adc":
-                MakePlayersButton(gm.osladcList);
-                break;
-            case "support":
-                MakePlayersButton(gm.oslsuppList);
-                break;
-            case "mid":
-                MakePlayersButton(gm.oslmidList);
-                break;
-            case "jungle":
-                MakePlayersButton(gm.osljungList);
-                break;
-            case "solo":
-                MakePlayersButton(gm.oslsoloList);
-                break;
-        }
+        UpdateDisplay();
+       
     }
 
     void MakePlayersButton(List<CSVread.Player> role)
@@ -82,7 +63,7 @@ public class ButtonManager : MonoBehaviour
                     btext.text = role[i].name;
                 }else if (i > 17 && i <= 23)
                 {
-                Vector3 place = new Vector3((i - 3 * buttonfixoff) * 200, -50) + offset;
+                Vector3 place = new Vector3((i - 3 * buttonfixoff) * 200, -150) + offset;
                 newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                 RectTransform rect = (RectTransform)newbut.transform;
                 rect.anchoredPosition = place;
@@ -90,7 +71,7 @@ public class ButtonManager : MonoBehaviour
                 btext.text = role[i].name;
                 }else if (i > 23 && i <= 29)
                 {
-                Vector3 place = new Vector3((i - 4 * buttonfixoff) * 200, 0) + offset;
+                Vector3 place = new Vector3((i - 4 * buttonfixoff) * 200,-200) + offset;
                 newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                 RectTransform rect = (RectTransform)newbut.transform;
                 rect.anchoredPosition = place;
@@ -98,7 +79,7 @@ public class ButtonManager : MonoBehaviour
                 btext.text = role[i].name;
                 }else if (i > 29 && i <= 35)
                 {
-                Vector3 place = new Vector3((i - 5 * buttonfixoff) * 200, 50) + offset;
+                Vector3 place = new Vector3((i - 5 * buttonfixoff) * 200, -250) + offset;
                 newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                 RectTransform rect = (RectTransform)newbut.transform;
                 rect.anchoredPosition = place;
@@ -109,28 +90,29 @@ public class ButtonManager : MonoBehaviour
     }
 
 
-    /*void UpdateDisplay()
+    public void UpdateDisplay()
     {
-        foreach (var button in spawnButton)
-        {
-            Destroy(button);
-        }
+        
+        gm = GameManager.instance.GetComponent<CSVread>();
 
 
-        for (var x = 0; x < width; x++)
+        switch (roleyouWant)
         {
-            for (var y = 0; y < height; y++)
-            {
-                if (grid[x, y] == 0)
-                {
-                    var butt = Instantiate(button);
-                    butt.transform.position = new Vector3(x, y);
-                    butt.transform.SetParent(canvas.transform, true);
-                    spawnButton.Add(butt);
-                    GameObject life = butt.gameObject;
-                    butt.GetComponent<Button>().onClick.AddListener(() => GameManager.instance.ButtonPress(life));
-                }
-            }
+            case "adc":
+                MakePlayersButton(gm.osladcList);
+                break;
+            case "support":
+                MakePlayersButton(gm.oslsuppList);
+                break;
+            case "mid":
+                MakePlayersButton(gm.oslmidList);
+                break;
+            case "jungle":
+                MakePlayersButton(gm.osljungList);
+                break;
+            case "solo":
+                MakePlayersButton(gm.oslsoloList);
+                break;
         }
-    }*/
+    }
 }

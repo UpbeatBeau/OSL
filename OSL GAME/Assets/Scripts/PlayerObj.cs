@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerObj : ScriptableObject
 {
     public string playerName;
+    public string firstletter;
     public string playerPos;
     
 }

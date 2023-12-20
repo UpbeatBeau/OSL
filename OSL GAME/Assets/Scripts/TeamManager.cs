@@ -6,7 +6,7 @@ using TMPro;
 
 public class TeamManager : MonoBehaviour
 {
-    public Team currentTeam;
+    public TeamOBJ currentTeam;
     public Camera cam;
     public TextMeshProUGUI teamName;
     public Image teamlogo;
