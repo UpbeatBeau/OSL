@@ -9,7 +9,7 @@ public class RoleButtonManager : MonoBehaviour
 {
     public Canvas roleCan;
     public GameManager gm;
-    public string goal;
+    public ALPHABET goal;
 
     private void Start()
     {
@@ -19,16 +19,14 @@ public class RoleButtonManager : MonoBehaviour
     public void ChooseRole()
     {
         gm = GameManager.instance.GetComponent<GameManager>();
-        goal = EventSystem.current.currentSelectedGameObject.GetComponent<ALPHABET>().rolecanTarget;
-        Debug.Log(goal);
-        roleCan = GameObject.Find(goal).GetComponent<Canvas>();
+        goal = EventSystem.current.currentSelectedGameObject.GetComponent<ALPHABET>();
+            
+        gm.choice = goal.rolechoice;
+        //Debug.Log(goal);
+        roleCan = GameObject.Find(goal.rolecanTarget).GetComponent<Canvas>();
         roleCan.enabled = true;
         gm.pickIsInCan.enabled = false;
     }
 
-    public void BacktoPick()
-    {
-
-    }
 
 }

@@ -15,7 +15,7 @@ public class CSVread : MonoBehaviour
     
 
     [System.Serializable]
-    public class Player
+    public class Player 
     {
         public string name;
         public string role;
@@ -25,7 +25,7 @@ public class CSVread : MonoBehaviour
     {
         public Player[] player;
     }
-
+   
 
     public PlayerList oslList = new PlayerList();
     public List<Player> osladcList = new List<Player>(); //adc list

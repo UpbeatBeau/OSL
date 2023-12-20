@@ -12,6 +12,7 @@ public class PlayerButtons : MonoBehaviour
     private string targetplayername;
     private Canvas Drafttimer;
     private Canvas mycan;
+    
 
     private void Start()
     {
@@ -36,8 +37,51 @@ public class PlayerButtons : MonoBehaviour
                 tm.currentTeam.draftedPlayers.Add(csv.clone[i].playerName);
                 gm.lastDrafted.Clear();
                 gm.lastDrafted.Add(csv.clone[i]);
-                //tm.pick1.text = csv.clone[i].playerName;
+                int f = gm.choice;
+                switch (f)
+                {
+                    case 1:
+                        for (int x = 0; x < csv.osladcList.Count; x++)
+                        {
+                            if (csv.osladcList[x].name == targetplayername)
+                            {
+                                csv.osladcList.RemoveAt(x);
+                            }
+                        }
+                        break;
+                    case 2:
+                        for (int x = 0; x < csv.oslsuppList.Count; x++)
+                        {
+                            if (csv.oslsuppList[x].name == targetplayername)
+                            {
+                                csv.oslsuppList.RemoveAt(x);
+                            }
+                        }
+                        break;
+                    case 3:
+                        for (int x = 0; x < csv.oslmidList.Count; x++)
+                        {
+                            if (csv.oslmidList[x].name == targetplayername)
+                            {
+                                csv.oslmidList.RemoveAt(x);
+                            }
+                        }
+                        break;
+                    case 4:
+                        for (int x = 0; x < csv.osljungList.Count; x++)
+                        {
+                            if (csv.osljungList[x].name == targetplayername)
+                            {
+                                csv.osljungList.RemoveAt(x);
+                            }
+                        }
+                        break;
+
+                }
             }
+
+            gm.canfuck = true;
+         
         }
         //Debug.Log(draftTeam);
 

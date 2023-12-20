@@ -5,4 +5,5 @@ using UnityEngine;
 public class ALPHABET : MonoBehaviour
 {
     public string rolecanTarget;
+    public int rolechoice;
 }

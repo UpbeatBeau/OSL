@@ -29,7 +29,10 @@ public class GameManager : MonoBehaviour
     public List<PlayerObj> lastDrafted;
     public TextMeshProUGUI lastone;
     public List<TeamOBJ> lasttopick;
-    
+    public int choice;
+    public bool canfuck = false;
+    public PlayerButtons reset;
+
     private void Awake()
     {
         if(instance == null)
@@ -92,12 +95,19 @@ public class GameManager : MonoBehaviour
         {
             draftTeam.enabled = false;
             onClockCan.enabled = true;
-        }else if (Input.GetKeyDown(KeyCode.Backspace))
+        }else if (Input.GetKeyDown(KeyCode.Backspace) && canfuck)
         {
             FUCKEDIT();
+        }else if (Input.GetKeyDown(KeyCode.P) && timerOn)
+        {
+            timerOn = false;
         }
- 
-        
+        else if (Input.GetKeyDown(KeyCode.P) && !timerOn)
+        {
+            timerOn = true;
+        }
+
+
     }
 
     public void UpdateDraftedPlayers(string TeamOBJ)
@@ -219,9 +229,10 @@ public class GameManager : MonoBehaviour
         writer.Close();
 
     }
-
+   
     public void FUCKEDIT()
     {
+        canfuck = false;
         csv.MessedUp();
         GameObject[] pbutts;
         pbutts = GameObject.FindGameObjectsWithTag("Pbutt");
@@ -233,7 +244,8 @@ public class GameManager : MonoBehaviour
         UpdateDraftedPlayers(lasttopick[0].teamName);
         lastone.text = "";
         csv.Order.AddFirst(lasttopick[0].name);
-        nextTeam();
+        reset.NextTeam();
+        pickIsInCan.enabled = false;
         string rolecheck = lastDrafted[0].firstletter;
         if (String.Compare(rolecheck, "a", true) >= 0 && String.Compare(rolecheck, "f", true) <= 0)
         {
@@ -254,15 +266,16 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            csv.osljungList.Add(csv.lastosldrafted.player[1]);
+            csv.osljungList.Add(csv.lastosldrafted.player[0]);
         }
         GameObject[] spawners;
         spawners = GameObject.FindGameObjectsWithTag("Playerbutt");
         foreach (var p in spawners)
         {
+            p.GetComponent<Canvas>().enabled = false;
             p.GetComponent<ButtonManager>().UpdateDisplay();
         }
-
+        timerOn = false;
     }
     
 }

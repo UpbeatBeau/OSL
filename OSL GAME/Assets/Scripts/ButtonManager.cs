@@ -94,23 +94,27 @@ public class ButtonManager : MonoBehaviour
     {
         
         gm = GameManager.instance.GetComponent<CSVread>();
-
-
+       
         switch (roleyouWant)
         {
             case "adc":
+                gm.osladcList.Sort(PlayerSort.Comparison);
                 MakePlayersButton(gm.osladcList);
                 break;
             case "support":
+                gm.oslsuppList.Sort(PlayerSort.Comparison);
                 MakePlayersButton(gm.oslsuppList);
                 break;
             case "mid":
+                gm.oslmidList.Sort(PlayerSort.Comparison);
                 MakePlayersButton(gm.oslmidList);
                 break;
             case "jungle":
+                gm.osljungList.Sort(PlayerSort.Comparison);
                 MakePlayersButton(gm.osljungList);
                 break;
             case "solo":
+                gm.oslsoloList.Sort(PlayerSort.Comparison);
                 MakePlayersButton(gm.oslsoloList);
                 break;
         }
