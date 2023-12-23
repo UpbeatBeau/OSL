@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class PlayerButtons : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class PlayerButtons : MonoBehaviour
         csv = GameManager.instance.GetComponent<CSVread>();
         string draftTeam = tm.currentTeam.teamName.Trim();
         Debug.Log(draftTeam);
-        targetplayername = EventSystem.current.currentSelectedGameObject.transform.GetComponentInChildren<Text>().text;
+        targetplayername = EventSystem.current.currentSelectedGameObject.transform.GetComponentInChildren<TextMeshProUGUI>().text;
         //Debug.Log("Target Player" + targetplayername);
         for(int i = 0;i < csv.clone.Length; i++)
         {

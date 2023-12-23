@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject button;
     
     private CSVread gm;
-    private Text btext;
+    private TextMeshProUGUI btext;
     private GameObject newbut;
     public Transform WhereYouWantButtonsParented;
     public Vector3 offset;
@@ -41,7 +42,7 @@ public class ButtonManager : MonoBehaviour
                     newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                     RectTransform rect = (RectTransform)newbut.transform;
                     rect.anchoredPosition = place;
-                    btext = newbut.transform.GetChild(0).GetComponent<Text>();
+                    btext = newbut.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                     btext.text = role[i].name;
                 }
                 else if (i > 5 && i <= 11)
@@ -50,7 +51,7 @@ public class ButtonManager : MonoBehaviour
                     newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                     RectTransform rect = (RectTransform)newbut.transform;
                     rect.anchoredPosition = place;
-                    btext = newbut.transform.GetChild(0).GetComponent<Text>();
+                    btext = newbut.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                     btext.text = role[i].name;
                 }
                 else if (i > 11 && i <= 17)
@@ -59,7 +60,7 @@ public class ButtonManager : MonoBehaviour
                     newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                     RectTransform rect = (RectTransform)newbut.transform;
                     rect.anchoredPosition = place;
-                    btext = newbut.transform.GetChild(0).GetComponent<Text>();
+                    btext = newbut.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                     btext.text = role[i].name;
                 }else if (i > 17 && i <= 23)
                 {
@@ -67,7 +68,7 @@ public class ButtonManager : MonoBehaviour
                 newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                 RectTransform rect = (RectTransform)newbut.transform;
                 rect.anchoredPosition = place;
-                btext = newbut.transform.GetChild(0).GetComponent<Text>();
+                btext = newbut.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 btext.text = role[i].name;
                 }else if (i > 23 && i <= 29)
                 {
@@ -75,7 +76,7 @@ public class ButtonManager : MonoBehaviour
                 newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                 RectTransform rect = (RectTransform)newbut.transform;
                 rect.anchoredPosition = place;
-                btext = newbut.transform.GetChild(0).GetComponent<Text>();
+                btext = newbut.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 btext.text = role[i].name;
                 }else if (i > 29 && i <= 35)
                 {
@@ -83,7 +84,7 @@ public class ButtonManager : MonoBehaviour
                 newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                 RectTransform rect = (RectTransform)newbut.transform;
                 rect.anchoredPosition = place;
-                btext = newbut.transform.GetChild(0).GetComponent<Text>();
+                btext = newbut.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 btext.text = role[i].name;
                 }else if (i > 35 && i <= 41)
                 {
@@ -91,7 +92,7 @@ public class ButtonManager : MonoBehaviour
                 newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                 RectTransform rect = (RectTransform)newbut.transform;
                 rect.anchoredPosition = place;
-                btext = newbut.transform.GetChild(0).GetComponent<Text>();
+                btext = newbut.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 btext.text = role[i].name;
                 }else if (i > 41 && i <= 47)
                 {
@@ -99,7 +100,7 @@ public class ButtonManager : MonoBehaviour
                 newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                 RectTransform rect = (RectTransform)newbut.transform;
                 rect.anchoredPosition = place;
-                btext = newbut.transform.GetChild(0).GetComponent<Text>();
+                btext = newbut.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 btext.text = role[i].name;
                 }else if (i > 47 && i <= 53)
                 {
@@ -107,7 +108,7 @@ public class ButtonManager : MonoBehaviour
                 newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                 RectTransform rect = (RectTransform)newbut.transform;
                 rect.anchoredPosition = place;
-                btext = newbut.transform.GetChild(0).GetComponent<Text>();
+                btext = newbut.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 btext.text = role[i].name;
                 }else if (i > 53 && i <= 59)
                 {
@@ -115,7 +116,7 @@ public class ButtonManager : MonoBehaviour
                 newbut = Instantiate<GameObject>(button.gameObject, WhereYouWantButtonsParented);
                 RectTransform rect = (RectTransform)newbut.transform;
                 rect.anchoredPosition = place;
-                btext = newbut.transform.GetChild(0).GetComponent<Text>();
+                btext = newbut.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 btext.text = role[i].name;
                 }
 

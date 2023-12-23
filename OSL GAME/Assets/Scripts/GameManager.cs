@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
             //Debug.Log(t.name);
             t.draftedPlayers.Clear();
         }
+        File.SetAttributes(fileDraft, FileAttributes.Normal);
         File.Create(@fileDraft);
         
 
