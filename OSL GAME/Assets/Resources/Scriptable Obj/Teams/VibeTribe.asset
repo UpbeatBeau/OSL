@@ -16,4 +16,6 @@ MonoBehaviour:
   teamColor: {r: 0.28325954, g: 0.06247775, b: 0.49056602, a: 0}
   logo: {fileID: 21300000, guid: 0ca379576a955b34cbe483eca37f61c0, type: 3}
   onClock: 0
-  draftedPlayers: []
+  draftedPlayers:
+  - Bambam1758
+  Captain: Vic

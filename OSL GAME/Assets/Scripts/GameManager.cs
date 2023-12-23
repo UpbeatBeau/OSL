@@ -57,6 +57,11 @@ public class GameManager : MonoBehaviour
         {
             //Debug.Log(t.name);
             t.draftedPlayers.Clear();
+            TextMeshProUGUI listofdrafted;
+            string captain;
+            listofdrafted = draftTeam.transform.Find(t.teamName).GetChild(0).GetComponent<TextMeshProUGUI>();
+            captain = t.Captain;
+            listofdrafted.text = captain;
         }
         File.SetAttributes(fileDraft, FileAttributes.Normal);
         File.Create(@fileDraft);
@@ -116,9 +121,11 @@ public class GameManager : MonoBehaviour
         //Debug.Log("YOU DRAFTED");
         TextMeshProUGUI listofdrafted;
         List <string> teamList;
+        string captain;
         listofdrafted = draftTeam.transform.Find(TeamOBJ).GetChild(0).GetComponent<TextMeshProUGUI>();
+        captain = man.currentTeam.Captain;
         teamList = man.currentTeam.draftedPlayers;
-        listofdrafted.text = ListToPlayerText(teamList);
+        listofdrafted.text = captain + "\n" + ListToPlayerText(teamList);
         Debug.Log(lastDrafted[0].playerName);
         lastone.text = lastDrafted[0].playerName;
     }
@@ -172,7 +179,7 @@ public class GameManager : MonoBehaviour
     {
        
         tmp.text = man.currentTeam.teamName;
-        tmp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ListToPlayerText(man.currentTeam.draftedPlayers);
+        tmp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = man.currentTeam.Captain + "\n" + ListToPlayerText(man.currentTeam.draftedPlayers);
     }
 
     public void Onclockon()

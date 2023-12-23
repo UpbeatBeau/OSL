@@ -11,4 +11,5 @@ public class TeamOBJ : ScriptableObject
     public Sprite logo;
     public bool onClock;
     public List<string> draftedPlayers;
+    public string Captain;
 }
