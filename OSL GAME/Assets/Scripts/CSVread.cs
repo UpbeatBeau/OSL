@@ -99,14 +99,14 @@ public class CSVread : MonoBehaviour
        
 
         draftTableSize = draftOrder.Length-1;
-        Debug.Log(draftTableSize);
+        //Debug.Log(draftTableSize);
         for (int i = 0; i <= draftTableSize; i++)
         {
             
             Order.AddLast(draftOrder[i]);
             
         }
-        Display(Order, "test");
+        //Display(Order, "test");
         //GameManager.instance.GetComponent<GameManager>().nextTeam();
     }
 

@@ -14,12 +14,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public float draftTime;
-    public bool timerOn = true;
+    public bool timerOn;
     public bool isPicking = false;
     public float maxTime;
     public TextMeshProUGUI timerText;
     private TeamManager man;
     public TeamOBJ next;
+    public TeamOBJ nextupTeam;
     public Canvas onClockCan;
     public Canvas pickIsInCan;
     public UnityEngine.Object[] clearTeam;
@@ -95,10 +96,12 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.D) && !isPicking)
         {
+            man.overlay.color = new Color(0, 0, 0, .9f);
             draftTeam.enabled = true;
             onClockCan.enabled = false;
         }else if (Input.GetKeyUp(KeyCode.D) && !isPicking)
         {
+            man.overlay.color = man.currentTeam.teamColor;
             draftTeam.enabled = false;
             onClockCan.enabled = true;
         }else if (Input.GetKeyDown(KeyCode.Backspace) && canfuck)
@@ -106,6 +109,8 @@ public class GameManager : MonoBehaviour
             FUCKEDIT();
         }else if (Input.GetKeyDown(KeyCode.P) && timerOn)
         {
+            StopAllCoroutines();
+            StopCoroutine("timerPause");
             timerOn = false;
         }
         else if (Input.GetKeyDown(KeyCode.P) && !timerOn)
@@ -160,9 +165,11 @@ public class GameManager : MonoBehaviour
             
             string path = "Scriptable Obj/Teams/" + csv.Order.First.Value.Trim();
             
-            Debug.Log(path);
+            //Debug.Log(path);
             next = Resources.Load<TeamOBJ>(path);
             man.currentTeam = next;
+            string nextuppath = "Scriptable Obj/Teams/" + csv.Order.First.Next.Value.Trim();
+            nextupTeam = Resources.Load<TeamOBJ>(nextuppath);
             //Debug.Log(next.teamName);
             man.UpdateTeam();
             
@@ -285,5 +292,12 @@ public class GameManager : MonoBehaviour
         }
         timerOn = false;
     }
-    
+    public IEnumerator timerPause(float waitTime)
+    {
+        
+            yield return new WaitForSeconds(waitTime);
+            timerOn = true;
+       
+    }
+
 }

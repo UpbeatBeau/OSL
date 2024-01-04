@@ -7,9 +7,11 @@ using TMPro;
 public class TeamManager : MonoBehaviour
 {
     public TeamOBJ currentTeam;
-    public Camera cam;
+    public SpriteRenderer overlay;
     public TextMeshProUGUI teamName;
     public Image teamlogo;
+    public Image nextuplogo;
+    public TextMeshProUGUI nextupteamname;
     //public Text pick1;
 
 
@@ -22,9 +24,11 @@ public class TeamManager : MonoBehaviour
 
    public void UpdateTeam()
     {
-        cam.backgroundColor=currentTeam.teamColor;
+        overlay.color=currentTeam.teamColor;
         //teamName.color = currentTeam.teamColor;
         teamName.text = currentTeam.teamName;
         teamlogo.sprite = currentTeam.logo;
+        nextupteamname.text = GameManager.instance.nextupTeam.teamName;
+        nextuplogo.sprite = GameManager.instance.nextupTeam.logo;
     }
 }

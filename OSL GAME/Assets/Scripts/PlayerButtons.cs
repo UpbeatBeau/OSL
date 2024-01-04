@@ -102,21 +102,14 @@ public class PlayerButtons : MonoBehaviour
         mycan.enabled = false;
         gm = GameManager.instance.GetComponent<GameManager>();
         gm.nextTeam();
-        StartCoroutine(timerPause(10f));
+        StartCoroutine(GameManager.instance.timerPause(10f));
         gm.draftTime = gm.maxTime;
         gm.isPicking = false;
         
     }
 
   
-    private IEnumerator timerPause(float waitTime)
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(waitTime);
-            gm.timerOn = true;
-        }
-    }
+   
 
     public void GoBack()
     {
