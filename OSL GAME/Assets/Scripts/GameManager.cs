@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI tmp;
     public List<PlayerObj> lastDrafted;
     public TextMeshProUGUI lastone;
+    public Image lastteamlogo;
     public List<TeamOBJ> lasttopick;
     public int choice;
     public bool canfuck = false;
@@ -133,6 +134,8 @@ public class GameManager : MonoBehaviour
         listofdrafted.text = captain + "\n" + ListToPlayerText(teamList);
         Debug.Log(lastDrafted[0].playerName);
         lastone.text = lastDrafted[0].playerName;
+        lastteamlogo.enabled = true;
+        lastteamlogo.sprite = lasttopick[0].logo;
     }
 
     private string ListToPlayerText(List<string> list)
@@ -186,7 +189,7 @@ public class GameManager : MonoBehaviour
     {
        
         tmp.text = man.currentTeam.teamName;
-        tmp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = man.currentTeam.Captain + "\n" + ListToPlayerText(man.currentTeam.draftedPlayers);
+        tmp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "<color=#db9904>Captain</color>" + "\n" + man.currentTeam.Captain + "\n" + "<color=yellow>Draft Picks</color>" + "\n" + ListToPlayerText(man.currentTeam.draftedPlayers);
     }
 
     public void Onclockon()
