@@ -189,7 +189,7 @@ public class GameManager : MonoBehaviour
     {
        
         tmp.text = man.currentTeam.teamName;
-        tmp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "<color=#db9904>Captain</color>" + "\n" + man.currentTeam.Captain + "\n" + "<color=yellow>Draft Picks</color>" + "\n" + ListToPlayerText(man.currentTeam.draftedPlayers);
+        tmp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "<color=#db9904>Captain</color>" + "\n" + man.currentTeam.Captain + "\n" + "<color=#db9904>Draft Picks</color>" + "\n" + ListToPlayerText(man.currentTeam.draftedPlayers);
     }
 
     public void Onclockon()
