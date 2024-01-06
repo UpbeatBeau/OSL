@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public int choice;
     public bool canfuck = false;
     public PlayerButtons reset;
+    private bool endofDraft = false;
 
     private void Awake()
     {
@@ -74,51 +75,67 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (draftTime > 0 && timerOn)
-        {
-            draftTime -= Time.deltaTime;
-            TimerTick(draftTime);
-        }else if(draftTime > 0 && !timerOn)
-        {
-            timerText.text = "Waiting!";
-        }
-        else if (!isPicking)
-        {
-            Onclockon();
-            PickIn();
-            draftTime = 0;
-            timerOn = false;
-            isPicking = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            draftTime = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.D) && !isPicking)
+        if (endofDraft)
         {
             man.overlay.color = new Color(0, 0, 0, .9f);
             draftTeam.enabled = true;
             onClockCan.enabled = false;
-        }else if (Input.GetKeyUp(KeyCode.D) && !isPicking)
-        {
-            man.overlay.color = man.currentTeam.teamColor;
-            draftTeam.enabled = false;
-            onClockCan.enabled = true;
-        }else if (Input.GetKeyDown(KeyCode.Backspace) && canfuck)
-        {
-            FUCKEDIT();
-        }else if (Input.GetKeyDown(KeyCode.P) && timerOn)
-        {
-            StopAllCoroutines();
-            StopCoroutine("timerPause");
-            timerOn = false;
         }
-        else if (Input.GetKeyDown(KeyCode.P) && !timerOn)
+        else
         {
-            timerOn = true;
-        }
+            if (draftTime > 0 && timerOn)
+            {
+                draftTime -= Time.deltaTime;
+                TimerTick(draftTime);
+            }
+            else if (draftTime > 0 && !timerOn)
+            {
+                timerText.text = "Waiting!";
+            }
+            else if (!isPicking)
+            {
+                Onclockon();
+                PickIn();
+                draftTime = 0;
+                timerOn = false;
+                isPicking = true;
+            }
 
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                draftTime = 0;
+            }
+            if (Input.GetKeyDown(KeyCode.D) && !isPicking)
+            {
+                man.overlay.color = new Color(0, 0, 0, .9f);
+                draftTeam.enabled = true;
+                onClockCan.enabled = false;
+            }
+            else if (Input.GetKeyUp(KeyCode.D) && !isPicking)
+            {
+                man.overlay.color = man.currentTeam.teamColor;
+                draftTeam.enabled = false;
+                onClockCan.enabled = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Backspace) && canfuck)
+            {
+                FUCKEDIT();
+            }
+            else if (Input.GetKeyDown(KeyCode.P) && timerOn)
+            {
+                StopAllCoroutines();
+                StopCoroutine("timerPause");
+                timerOn = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.P) && !timerOn)
+            {
+                timerOn = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.K))
+            {
+                EndDraft();
+            }
+        }
 
     }
 
@@ -171,16 +188,23 @@ public class GameManager : MonoBehaviour
             //Debug.Log(path);
             next = Resources.Load<TeamOBJ>(path);
             man.currentTeam = next;
-            string nextuppath = "Scriptable Obj/Teams/" + csv.Order.First.Next.Value.Trim();
-            nextupTeam = Resources.Load<TeamOBJ>(nextuppath);
+            if (csv.Order.Count > 1)
+            {
+                string nextuppath = "Scriptable Obj/Teams/" + csv.Order.First.Next.Value.Trim();
+                nextupTeam = Resources.Load<TeamOBJ>(nextuppath);
+            }
+            else
+            {
+                nextupTeam = Resources.Load<TeamOBJ>("Scriptable Obj/Teams/xEndofDraft");
+            }
             //Debug.Log(next.teamName);
             man.UpdateTeam();
             
         }
         else
         {
-            EndDraft();
-           //SceneManager.LoadScene("DraftOver");
+            endofDraft = true;
+            EndDraft();            
         }
         MainTeam();
     }
