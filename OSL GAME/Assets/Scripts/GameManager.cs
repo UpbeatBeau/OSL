@@ -329,6 +329,8 @@ public class GameManager : MonoBehaviour
         onClockCan.enabled = true;
         displaypick.enabled = false;
         nextTeam();
+        displaypick.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "The pick is in";
+        displaypick.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = " ";
         yield return new WaitForSeconds(3f);
         timerOn = true;
     }
