@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kitsune
   m_EditorClassIdentifier: 
   teamName: Kitsune
-  teamColor: {r: 0.9137255, g: 0.11764706, b: 0.3882353, a: 0.29411766}
+  teamColor: {r: 0.9137255, g: 0.11764706, b: 0.3882353, a: 0.09803922}
   logo: {fileID: 21300000, guid: 25604ac34577c7648b77ec9235da4ef4, type: 3}
   onClock: 0
   draftedPlayers:

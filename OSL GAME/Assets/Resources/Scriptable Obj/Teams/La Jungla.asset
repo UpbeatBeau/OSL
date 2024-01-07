@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: La Jungla
   m_EditorClassIdentifier: 
   teamName: La Jungla
-  teamColor: {r: 1, g: 0.8980392, b: 0.7058824, a: 0.29411766}
+  teamColor: {r: 1, g: 0.8980392, b: 0.7058824, a: 0.09803922}
   logo: {fileID: 21300000, guid: ebc6d59e1af7c0b468211a0b0bac364e, type: 3}
   onClock: 0
   draftedPlayers:

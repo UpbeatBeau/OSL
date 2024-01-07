@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wailing Banshees
   m_EditorClassIdentifier: 
   teamName: Wailing Banshees
-  teamColor: {r: 0, g: 0, b: 0, a: 0.5882353}
+  teamColor: {r: 0, g: 0, b: 0, a: 0.19607843}
   logo: {fileID: 21300000, guid: 394cbc8b5dbbe254ab265acbc8628412, type: 3}
   onClock: 0
   draftedPlayers:

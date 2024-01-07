@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fey Guard
   m_EditorClassIdentifier: 
   teamName: Fey Guard
-  teamColor: {r: 0.43137255, g: 0.007843138, b: 0.46666667, a: 0.29411766}
+  teamColor: {r: 0.43137255, g: 0.007843138, b: 0.46666667, a: 0.09803922}
   logo: {fileID: 1624269481, guid: f5579e200351bf74dbc01b55f2d940b3, type: 3}
   onClock: 0
   draftedPlayers: []

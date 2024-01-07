@@ -332,8 +332,8 @@ public class GameManager : MonoBehaviour
     public IEnumerator timerPause(float waitTime)
     {
         onClockCan.enabled = false;
-        draftTime = maxTime;
         yield return new WaitForSeconds(waitTime);
+        draftTime = maxTime;
         isPicking = false;
         onClockCan.enabled = true;
         displaypick.enabled = false;
@@ -342,6 +342,8 @@ public class GameManager : MonoBehaviour
         displaypick.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = " ";
         yield return new WaitForSeconds(3f);
         timerOn = true;
+        StopCoroutine("timerPause");
+        StopAllCoroutines();
     }
 
 }

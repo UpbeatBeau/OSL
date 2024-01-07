@@ -103,9 +103,7 @@ public class PlayerButtons : MonoBehaviour
         gm = GameManager.instance.GetComponent<GameManager>();
         gm.displaypick.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = gm.lasttopick[0].teamName + "\nhave selected";
         gm.displaypick.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = gm.lastDrafted[0].playerName;
-        StartCoroutine(GameManager.instance.timerPause(10f));
-        
-        
+        StartCoroutine(GameManager.instance.timerPause(10f));    
     }
 
   
