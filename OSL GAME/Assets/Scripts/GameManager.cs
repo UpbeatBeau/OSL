@@ -287,8 +287,17 @@ public class GameManager : MonoBehaviour
         UpdateDraftedPlayers(lasttopick[0].teamName);
         lastone.text = "";
         csv.Order.AddFirst(lasttopick[0].name);
-        reset.NextTeam();
+        onClockCan.enabled = true;
+        draftTime = maxTime;
+        isPicking = false;
+        displaypick.enabled = false;
+        nextTeam();
+        displaypick.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "The pick is in";
+        displaypick.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = " ";
+        timerOn = true;
         pickIsInCan.enabled = false;
+        onClockCan.enabled = true;
+        displaypick.enabled = false;
         string rolecheck = lastDrafted[0].firstletter;
         if (String.Compare(rolecheck, "a", true) >= 0 && String.Compare(rolecheck, "f", true) <= 0)
         {
