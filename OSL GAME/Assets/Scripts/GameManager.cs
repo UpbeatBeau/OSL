@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public TeamOBJ nextupTeam;
     public Canvas onClockCan;
     public Canvas pickIsInCan;
+    public Canvas displaypick;
     public UnityEngine.Object[] clearTeam;
     public CSVread csv;
     public Canvas draftTeam;
@@ -59,12 +60,15 @@ public class GameManager : MonoBehaviour
         foreach(TeamOBJ t in clearTeam)
         {
             //Debug.Log(t.name);
-            t.draftedPlayers.Clear();
-            TextMeshProUGUI listofdrafted;
-            string captain;
-            listofdrafted = draftTeam.transform.Find(t.teamName).GetChild(0).GetComponent<TextMeshProUGUI>();
-            captain = t.Captain;
-            listofdrafted.text = captain;
+            if (t.teamName != "End of Draft")
+            {
+                t.draftedPlayers.Clear();
+                TextMeshProUGUI listofdrafted;
+                string captain;
+                listofdrafted = draftTeam.transform.Find(t.teamName).GetChild(0).GetComponent<TextMeshProUGUI>();
+                captain = t.Captain;
+                listofdrafted.text = captain;
+            }
         }
         File.SetAttributes(fileDraft, FileAttributes.Normal);
         File.Create(@fileDraft);
@@ -94,7 +98,7 @@ public class GameManager : MonoBehaviour
             }
             else if (!isPicking)
             {
-                Onclockon();
+                onClockCan.enabled = false;
                 PickIn();
                 draftTime = 0;
                 timerOn = false;
@@ -216,18 +220,7 @@ public class GameManager : MonoBehaviour
         tmp.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "<color=#db9904>Captain</color>" + "\n" + man.currentTeam.Captain + "\n" + "<color=#db9904>Draft Picks</color>" + "\n" + ListToPlayerText(man.currentTeam.draftedPlayers);
     }
 
-    public void Onclockon()
-    {
-        if(onClockCan.enabled == false)
-        {
-            onClockCan.enabled = true;
-        }
-        else
-        {
-            onClockCan.enabled = false;
-        }
-        draftTeam.enabled = false;
-    }
+   
     
     public void PickIn()
     {
@@ -238,6 +231,14 @@ public class GameManager : MonoBehaviour
         else
         {
             pickIsInCan.enabled = false;
+        }
+        if (displaypick.enabled == false)
+        {
+            displaypick.enabled = true;
+        }
+        else
+        {
+            displaypick.enabled = false;
         }
         draftTeam.enabled = false;
         onClockCan.enabled = false;
@@ -321,10 +322,15 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator timerPause(float waitTime)
     {
-        
-            yield return new WaitForSeconds(waitTime);
-            timerOn = true;
-       
+        onClockCan.enabled = false;
+        draftTime = maxTime;
+        yield return new WaitForSeconds(waitTime);
+        isPicking = false;
+        onClockCan.enabled = true;
+        displaypick.enabled = false;
+        nextTeam();
+        yield return new WaitForSeconds(3f);
+        timerOn = true;
     }
 
 }

@@ -101,10 +101,10 @@ public class PlayerButtons : MonoBehaviour
         Drafttimer.enabled = true;
         mycan.enabled = false;
         gm = GameManager.instance.GetComponent<GameManager>();
-        gm.nextTeam();
+        gm.displaypick.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = gm.lasttopick[0].teamName + "\nhave selected";
+        gm.displaypick.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = gm.lastDrafted[0].playerName;
         StartCoroutine(GameManager.instance.timerPause(10f));
-        gm.draftTime = gm.maxTime;
-        gm.isPicking = false;
+        
         
     }
 
