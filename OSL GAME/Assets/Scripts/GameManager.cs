@@ -242,6 +242,7 @@ public class GameManager : MonoBehaviour
         }
         draftTeam.enabled = false;
         onClockCan.enabled = false;
+        man.overlay.color = new Color(0, 0, 0, .9f);
     }
 
     List<string> finalTeams;

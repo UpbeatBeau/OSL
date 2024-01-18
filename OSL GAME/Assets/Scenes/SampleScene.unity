@@ -2094,14 +2094,14 @@ RectTransform:
   m_GameObject: {fileID: 232874765}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.65189976, y: 0.85880226, z: 0.92321235}
+  m_LocalScale: {x: 1.0264162, y: 1.3521842, z: 1.4535978}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 696331733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 110}
+  m_AnchoredPosition: {x: 0, y: 132}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &232874767
@@ -2124,7 +2124,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Olympus
+  m_text: Athens
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e5aded77552a1134eb5ffc0d1f4bb436, type: 2}
   m_sharedMaterial: {fileID: 4185745673916067245, guid: e5aded77552a1134eb5ffc0d1f4bb436, type: 2}
@@ -2187,7 +2187,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 7.363953, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4752,8 +4752,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -447, y: 255}
-  m_SizeDelta: {x: 173.3755, y: 173.3755}
+  m_AnchoredPosition: {x: -440, y: 215}
+  m_SizeDelta: {x: 182.9767, y: 222.3882}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &696331734
 MonoBehaviour:
@@ -4775,7 +4775,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 42eea9a83570dd04c97f701c0697d7ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c7b1d203f271970469b64a1c4a1d0622, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12293,7 +12293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -110}
+  m_AnchoredPosition: {x: 0, y: -134}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2118420688
@@ -12316,7 +12316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Smite League
+  m_text: Division
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e5aded77552a1134eb5ffc0d1f4bb436, type: 2}
   m_sharedMaterial: {fileID: 4185745673916067245, guid: e5aded77552a1134eb5ffc0d1f4bb436, type: 2}
@@ -12343,7 +12343,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.3
+  m_fontSize: 37.05
   m_fontSizeBase: 70.69
   m_fontWeight: 400
   m_enableAutoSizing: 1
