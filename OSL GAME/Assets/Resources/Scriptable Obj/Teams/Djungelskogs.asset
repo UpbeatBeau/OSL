@@ -16,6 +16,5 @@ MonoBehaviour:
   teamColor: {r: 0.12156863, g: 0.31764707, b: 1, a: 0.09803922}
   logo: {fileID: 21300000, guid: 3cb2454e194579f4998ce3be6ed3dbda, type: 3}
   onClock: 0
-  draftedPlayers:
-  - hiphopx
-  Captain: Bao
+  draftedPlayers: []
+  Captain: Wake

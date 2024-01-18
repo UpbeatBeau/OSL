@@ -16,6 +16,5 @@ MonoBehaviour:
   teamColor: {r: 0.9843137, g: 0.7372549, b: 0.015686275, a: 0.09803922}
   logo: {fileID: 21300000, guid: 611b6162c9da94046a97db6c498c751c, type: 3}
   onClock: 0
-  draftedPlayers:
-  - irxsk
-  Captain: 
+  draftedPlayers: []
+  Captain: CardwellLegacy

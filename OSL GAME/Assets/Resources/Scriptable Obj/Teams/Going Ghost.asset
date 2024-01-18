@@ -16,6 +16,5 @@ MonoBehaviour:
   teamColor: {r: 0.7294118, g: 0.62352943, b: 1, a: 0.09803922}
   logo: {fileID: 21300000, guid: 318ae7d1a507f3d48885c16eada5c994, type: 3}
   onClock: 0
-  draftedPlayers:
-  - BraverISorry
-  Captain: Sam
+  draftedPlayers: []
+  Captain: Sehost
