@@ -71,8 +71,8 @@ public class GameManager : MonoBehaviour
             }
         }
         File.SetAttributes(fileDraft, FileAttributes.Normal);
-        File.Create(@fileDraft);
-        
+        //File.Create(@fileDraft);
+        File.Create(System.Environment.GetFolderPath(Environment.SpecialFolder.Desktop)+fileDraft);
 
     }
 
@@ -252,9 +252,10 @@ public class GameManager : MonoBehaviour
     
     public void EndDraft()
     {
-         string path = Application.dataPath + "/Data/" + fileDraft;
+         //string path = Application.dataPath + "/Data/" + fileDraft;
+        string path = System.Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + fileDraft;
         
-        StreamWriter writer = new StreamWriter(path);
+        StreamWriter writer = new StreamWriter(path,false);
         //CsvWriter fileWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
         writer.WriteLine("OSLDRAFT\n");
         foreach (TeamOBJ t in clearTeam)
