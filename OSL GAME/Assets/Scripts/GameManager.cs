@@ -36,6 +36,10 @@ public class GameManager : MonoBehaviour
     public bool canfuck = false;
     public PlayerButtons reset;
     private bool endofDraft = false;
+    public TextMeshProUGUI round;
+    public TextMeshProUGUI pick;
+    private int roundint = 1;
+    private int pickint = 1;
 
     private void Awake()
     {
@@ -52,6 +56,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        roundint = 1;
+        pickint = 0;
         csv = this.GetComponent<CSVread>();
         man = this.GetComponent<TeamManager>();
         timerOn = true;
@@ -139,8 +145,19 @@ public class GameManager : MonoBehaviour
             {
                 EndDraft();
             }
+            else if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
         }
+        round.text = "Round "+roundint;
+        pick.text = "Pick " + pickint;
 
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 
     public void UpdateDraftedPlayers(string TeamOBJ)
@@ -182,7 +199,16 @@ public class GameManager : MonoBehaviour
 
     public void nextTeam()
     {
-
+        if(pickint != 16)
+        {
+            pickint++;
+        }
+        else
+        {
+            pickint = 1;
+            roundint++;
+        }
+        
         //Debug.Log(csv.Order.Peek());
         if (csv.Order.Count != 0)
         {
@@ -272,11 +298,26 @@ public class GameManager : MonoBehaviour
             
         }
         writer.Close();
+        displaypick.enabled = false;
+        onClockCan.enabled = false;
+        pickIsInCan.enabled = false;
+        draftTeam.enabled = true;
+        draftTime = 100000f;
 
     }
    
     public void FUCKEDIT()
     {
+        if (pickint != 1)
+        {
+            pickint--;
+            pickint--;
+        }
+        else
+        {
+            pickint = 15;
+            roundint--;
+        }
         canfuck = false;
         csv.MessedUp();
         GameObject[] pbutts;
@@ -300,6 +341,7 @@ public class GameManager : MonoBehaviour
         pickIsInCan.enabled = false;
         onClockCan.enabled = true;
         displaypick.enabled = false;
+       
         string rolecheck = lastDrafted[0].firstletter;
         if (String.Compare(rolecheck, "a", true) >= 0 && String.Compare(rolecheck, "f", true) <= 0)
         {
