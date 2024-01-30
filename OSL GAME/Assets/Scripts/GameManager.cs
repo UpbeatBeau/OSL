@@ -298,11 +298,13 @@ public class GameManager : MonoBehaviour
             
         }
         writer.Close();
+        man.overlay.color = new Color(0, 0, 0, .9f);
         displaypick.enabled = false;
         onClockCan.enabled = false;
         pickIsInCan.enabled = false;
         draftTeam.enabled = true;
         draftTime = 100000f;
+        Destroy(this);
 
     }
    
