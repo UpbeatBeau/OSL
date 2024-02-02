@@ -68,19 +68,19 @@ public class CSVread : MonoBehaviour
             clone[i].playerPos = oslList.player[i].role;
             clone[i].firstletter = oslList.player[i].name.Substring(0, 1);
             string rolecheck = clone[i].firstletter;
-            if (String.Compare(rolecheck, "a",true) >= 0 && String.Compare(rolecheck, "f",true) <= 0)
+            if (String.Compare(rolecheck, "a",true) >= 0 && String.Compare(rolecheck, "d",true) <= 0)
             {
                 osladcList.Add(oslList.player[i]);
-            }else if (String.Compare(rolecheck, "g",true) >= 0 && String.Compare(rolecheck, "l",true)<= 0)
+            }else if (String.Compare(rolecheck, "e",true) >= 0 && String.Compare(rolecheck, "k",true)<= 0)
             {
                 oslsuppList.Add(oslList.player[i]);
             }
-            else if (String.Compare(rolecheck, "m", true) >= 0 && String.Compare(rolecheck, "s", true) <= 0)
+            else if (String.Compare(rolecheck, "l", true) >= 0 && String.Compare(rolecheck, "r", true) <= 0)
             {
                 oslmidList.Add(oslList.player[i]);
                 
             }
-            else if (String.Compare(rolecheck, "t", true) >= 0 && String.Compare(rolecheck, "z", true) <= 0)
+            else if (String.Compare(rolecheck, "s", true) >= 0 && String.Compare(rolecheck, "z", true) <= 0)
             {
                 osljungList.Add(oslList.player[i]);
             }
