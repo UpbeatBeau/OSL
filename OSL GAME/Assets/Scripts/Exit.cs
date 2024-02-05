@@ -9,4 +9,13 @@ public class Exit : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void StartThisBitch()
+    {
+        GameManager.instance.timerOn = true;
+        GameManager.instance.onClockCan.enabled = true;
+        GameManager.instance.displaypick.enabled = false;
+        GameManager.instance.Backdrop.SetActive(true);
+        GameManager.instance.GetComponent<TeamManager>().overlay.enabled = true;
+    }
 }

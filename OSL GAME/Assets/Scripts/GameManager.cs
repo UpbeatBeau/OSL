@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public TeamOBJ fifthTeam;
     public Canvas onClockCan;
     public Canvas pickIsInCan;
-    //public Canvas displaypick;
+    public Canvas displaypick;
     public UnityEngine.Object[] clearTeam;
     public CSVread csv;
     public Canvas draftTeam;
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         maxTime = 60f;
         csv = this.GetComponent<CSVread>();
         man = this.GetComponent<TeamManager>();
-        timerOn = true;
+        timerOn = false;
         draftTime = maxTime;
         clearTeam = Resources.LoadAll<TeamOBJ>("Scriptable Obj/Teams");
         foreach(TeamOBJ t in clearTeam)
