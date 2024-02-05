@@ -273,18 +273,30 @@ public class GameManager : MonoBehaviour
                 string holepath = "Scriptable Obj/Teams/" + csv.Order.First.Next.Next.Value.Trim();
                 holeTeam = Resources.Load<TeamOBJ>(holepath);
                 string fourthpath = "Scriptable Obj/Teams/" + csv.Order.First.Next.Next.Next.Value.Trim();
-                fourthupTeam = Resources.Load<TeamOBJ>(fourthpath);
+                fourthupTeam = Resources.Load<TeamOBJ>(fourthpath); 
+                string fifthpath = "Scriptable Obj/Teams/xEndofDraft";
+                fifthTeam = Resources.Load<TeamOBJ>(fifthpath);
             }
             else if (csv.Order.Count > 2) {
                 string nextuppath = "Scriptable Obj/Teams/" + csv.Order.First.Next.Value.Trim();
                 nextupTeam = Resources.Load<TeamOBJ>(nextuppath);
                 string holepath = "Scriptable Obj/Teams/" + csv.Order.First.Next.Next.Value.Trim();
                 holeTeam = Resources.Load<TeamOBJ>(holepath);
+                string fourthpath = "Scriptable Obj/Teams/xEndofDraft";
+                fourthupTeam = Resources.Load<TeamOBJ>(fourthpath);
+                string fifthpath = "Scriptable Obj/Teams/xEndofDraft";
+                fifthTeam = Resources.Load<TeamOBJ>(fifthpath);
             }
             else if (csv.Order.Count > 1)
             {
                 string nextuppath = "Scriptable Obj/Teams/" + csv.Order.First.Next.Value.Trim();
                 nextupTeam = Resources.Load<TeamOBJ>(nextuppath);
+                string holepath = "Scriptable Obj/Teams/xEndofDraft";
+                holeTeam = Resources.Load<TeamOBJ>(holepath);
+                string fourthpath = "Scriptable Obj/Teams/xEndofDraft";
+                fourthupTeam = Resources.Load<TeamOBJ>(fourthpath);
+                string fifthpath = "Scriptable Obj/Teams/xEndofDraft";
+                fifthTeam = Resources.Load<TeamOBJ>(fifthpath);
             }
             else
             {
