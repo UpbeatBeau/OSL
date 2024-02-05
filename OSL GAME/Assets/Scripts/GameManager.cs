@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     public GameObject Backdrop;
     public GameObject TeamDrop;
     private string targetplayername;
+    private bool canskip = true;
 
     private void Awake()
     {
@@ -130,7 +131,7 @@ public class GameManager : MonoBehaviour
             {
                 TeamDrop.SetActive(true);
                 Backdrop.SetActive(false);
-                //man.overlay.color = new Color(0, 0, 0, 0f);
+                man.overlay.color = new Color(0, 0, 0, 0f);
                 draftTeam.enabled = true;
                 onClockCan.enabled = false;
             }
@@ -164,7 +165,7 @@ public class GameManager : MonoBehaviour
             {
                 Application.Quit();
             }
-            else if (Input.GetKeyDown(KeyCode.S))
+            else if (Input.GetKeyDown(KeyCode.S) && canskip)
             {
                 string draftTeam = man.currentTeam.teamName.Trim();
                 targetplayername = "Skipped";
@@ -180,7 +181,7 @@ public class GameManager : MonoBehaviour
                 UpdateDraftedPlayers(draftTeam);
                 csv.Order.RemoveFirst();
                 draftedplayer.text = lastDrafted[0].playerName;
-                StartCoroutine(GameManager.instance.timerPause(5f));
+                StartCoroutine(skipPause(.1f));
 
             }
         }
@@ -443,7 +444,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator timerPause(float waitTime)
     {
         //onClockCan.enabled = false;
-        
+        canskip = false;
         draftedplayer.transform.localScale = new Vector3(.25f, .25f, .25f);
         Vector3 draftedtargetscale = new Vector3(1.5f, 1.5f, 1.5f);
         Vector3 draftedmovescale = new Vector3(.64f, .64f, .64f);
@@ -519,11 +520,96 @@ public class GameManager : MonoBehaviour
 
         //displaypick.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "The pick is in";
         //displaypick.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = " ";
-        yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(2f);
         timerOn = true;
+        canskip = true;
         StopCoroutine("timerPause");
         StopAllCoroutines();
     }
+    public IEnumerator skipPause(float waitTime)
+    {
+        //onClockCan.enabled = false;
+        canskip = false;
+        draftedplayer.transform.localScale = new Vector3(.25f, .25f, .25f);
+        Vector3 draftedtargetscale = new Vector3(1.5f, 1.5f, 1.5f);
+        Vector3 draftedmovescale = new Vector3(.64f, .64f, .64f);
+        Vector2 draftedtargetlocation = new Vector2(-241f, 45f);
+        Vector2 draftedstartlocation = new Vector2(11f, -186f);
+        while (draftedplayer.transform.localScale != draftedtargetscale)
+        {
+            yield return null;
+            draftedplayer.transform.localScale = Vector3.MoveTowards(draftedplayer.transform.localScale, draftedtargetscale, 10f * Time.deltaTime);
 
-    
+        }
+        yield return new WaitForSeconds(waitTime);
+        Vector2 teamlogotarget = new Vector3(-242.5532f, 180.7568f);
+        Vector2 nextteamlogotarget = new Vector3(15f, 111f);
+        Vector2 thirdteamlogotarget = new Vector3(272.3226f, 162.8841f);
+        Vector2 fourthteamlogotarget = new Vector3(415.8289f, 162.8841f);
+        Vector2 fifthteamlogotarget = new Vector3(556.6899f, 162.8841f);
+        Vector2 ogfifthspotlogo = new Vector3(698.8735f, 162.8841f);
+        Vector3 firstScaleog = new Vector3(2.65f, 2.65f, 2.65f);
+        Vector3 secondScaleog = new Vector3(1.569f, 1.569f, 1.569f);
+        Color firstalpha = new Color(255, 255, 255, 1);
+        Color secondalpha = new Color(255, 255, 255, .75f);
+        Color thirdalpha = new Color(255, 255, 255, .5f);
+        Color fourthalpha = new Color(255, 255, 255, .25f);
+        Color fifthalpha = new Color(255, 255, 255, .15f);
+        Color nextalpha = new Color(255, 255, 255, .75f);
+        while (man.teamlogo.rectTransform.anchoredPosition != teamlogotarget)
+        {
+            yield return null;
+            lastteamlogo.color = Vector4.MoveTowards(lastteamlogo.color, new Color(0, 0, 0, 0), 100f * Time.deltaTime);
+            lastone.color = Vector4.MoveTowards(lastteamlogo.color, new Color(0, 0, 0, 0), 50f * Time.deltaTime);
+            man.teamlogo.color = Vector4.MoveTowards(man.teamlogo.color, nextalpha, 50f * Time.deltaTime);
+            man.nextuplogo.color = Vector4.MoveTowards(man.nextuplogo.color, firstalpha, 50f * Time.deltaTime);
+            man.intheholeteam.color = Vector4.MoveTowards(man.intheholeteam.color, secondalpha, 50f * Time.deltaTime);
+            man.fourthtopickteam.color = Vector4.MoveTowards(man.fourthtopickteam.color, thirdalpha, 50f * Time.deltaTime);
+            man.fifthpickteam.color = Vector4.MoveTowards(man.fifthpickteam.color, fourthalpha, 50f * Time.deltaTime);
+            draftedplayer.transform.localScale = Vector3.MoveTowards(draftedplayer.rectTransform.localScale, draftedmovescale, .5f * Time.deltaTime);
+            man.teamlogo.rectTransform.localScale = Vector3.MoveTowards(man.teamlogo.rectTransform.localScale, secondScaleog, .5f * Time.deltaTime);
+            man.nextuplogo.rectTransform.localScale = Vector3.MoveTowards(man.nextuplogo.rectTransform.localScale, firstScaleog, .5f * Time.deltaTime);
+            draftedplayer.rectTransform.anchoredPosition = Vector2.MoveTowards(draftedplayer.rectTransform.anchoredPosition, draftedtargetlocation, 100f * Time.deltaTime);
+            man.teamlogo.rectTransform.anchoredPosition = Vector2.MoveTowards(man.teamlogo.rectTransform.anchoredPosition, teamlogotarget, 75f * Time.deltaTime);
+            man.nextuplogo.rectTransform.anchoredPosition = Vector2.MoveTowards(man.nextuplogo.rectTransform.anchoredPosition, nextteamlogotarget, 75f * Time.deltaTime);
+            man.intheholeteam.rectTransform.anchoredPosition = Vector2.MoveTowards(man.intheholeteam.rectTransform.anchoredPosition, thirdteamlogotarget, 55f * Time.deltaTime);
+            man.fourthtopickteam.rectTransform.anchoredPosition = Vector2.MoveTowards(man.fourthtopickteam.rectTransform.anchoredPosition, fourthteamlogotarget, 55f * Time.deltaTime);
+            man.fifthpickteam.rectTransform.anchoredPosition = Vector2.MoveTowards(man.fifthpickteam.rectTransform.anchoredPosition, fifthteamlogotarget, 55f * Time.deltaTime);
+        }
+        lastteamlogo.color = nextalpha;
+        lastone.color = nextalpha;
+        man.nextuplogo.color = secondalpha;
+        man.teamlogo.color = firstalpha;
+        man.intheholeteam.color = thirdalpha;
+        man.fourthtopickteam.color = fourthalpha;
+        man.fifthpickteam.color = fifthalpha;
+        man.teamlogo.rectTransform.anchoredPosition = nextteamlogotarget;
+        man.nextuplogo.rectTransform.anchoredPosition = thirdteamlogotarget;
+        man.intheholeteam.rectTransform.anchoredPosition = fourthteamlogotarget;
+        man.fourthtopickteam.rectTransform.anchoredPosition = fifthteamlogotarget;
+        man.fifthpickteam.rectTransform.anchoredPosition = ogfifthspotlogo;
+        man.teamlogo.rectTransform.localScale = firstScaleog;
+        man.nextuplogo.rectTransform.localScale = secondScaleog;
+        draftedplayer.text = " ";
+        draftedplayer.rectTransform.anchoredPosition = draftedstartlocation;
+        draftedplayer.transform.localScale = new Vector3(.25f, .25f, .25f);
+
+        isPicking = false;
+        onClockCan.enabled = true;
+        lastone.text = lastDrafted[0].playerName;
+        lastteamlogo.enabled = true;
+        lastteamlogo.sprite = lasttopick[0].logo;
+        //displaypick.enabled = false;
+        nextTeam();
+        draftTime = maxTime;
+
+        //displaypick.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "The pick is in";
+        //displaypick.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = " ";
+        //yield return new WaitForSeconds(2f);
+        timerOn = true;
+        canskip = true;
+        StopCoroutine("skipPause");
+        StopAllCoroutines();
+    }
+
 }
