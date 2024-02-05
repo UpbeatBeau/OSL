@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Warriors of Albion
   m_EditorClassIdentifier: 
   teamName: Warriors of Albion
-  teamColor: {r: 0.043137256, g: 0.3647059, b: 0.11764706, a: 0.09803922}
+  teamColor: {r: 0.043137256, g: 0.3647059, b: 0.11764706, a: 0.08627451}
   logo: {fileID: 21300000, guid: 321a50ad6987d2b469754c4a99173a39, type: 3}
   onClock: 0
-  draftedPlayers: []
+  draftedPlayers:
+  - "Ab\xECto"
   Captain: Hydra

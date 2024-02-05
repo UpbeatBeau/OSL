@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Flaming Tanukis
   m_EditorClassIdentifier: 
   teamName: Flaming Tanukis
-  teamColor: {r: 1, g: 0.4117647, b: 0, a: 0.09803922}
+  teamColor: {r: 1, g: 0.4117647, b: 0, a: 0.08627451}
   logo: {fileID: 21300000, guid: 05053f9d4191c6443adac8fec9443bd0, type: 3}
   onClock: 0
-  draftedPlayers: []
+  draftedPlayers:
+  - AmericanTangents
   Captain: Dastfer

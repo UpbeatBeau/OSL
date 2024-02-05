@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: The Crew
   m_EditorClassIdentifier: 
   teamName: The Crew
-  teamColor: {r: 0.4862745, g: 0.9882353, b: 0, a: 0.09803922}
+  teamColor: {r: 0.4862745, g: 0.9882353, b: 0, a: 0.039215688}
   logo: {fileID: 21300000, guid: 715832f0032c9274abb5c5deabbdf504, type: 3}
   onClock: 0
-  draftedPlayers: []
+  draftedPlayers:
+  - BankableMonster
   Captain: AyeGarret

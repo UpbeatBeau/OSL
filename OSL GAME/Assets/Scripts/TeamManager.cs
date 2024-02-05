@@ -11,6 +11,9 @@ public class TeamManager : MonoBehaviour
     public TextMeshProUGUI teamName;
     public Image teamlogo;
     public Image nextuplogo;
+    public Image intheholeteam;
+    public Image fourthtopickteam;
+    public Image fifthpickteam;
     public TextMeshProUGUI nextupteamname;
     //public Text pick1;
 
@@ -30,5 +33,13 @@ public class TeamManager : MonoBehaviour
         teamlogo.sprite = currentTeam.logo;
         nextupteamname.text = GameManager.instance.nextupTeam.teamName;
         nextuplogo.sprite = GameManager.instance.nextupTeam.logo;
+        intheholeteam.sprite = GameManager.instance.holeTeam.logo;
+        fourthtopickteam.sprite = GameManager.instance.fourthupTeam.logo;
+        fifthpickteam.sprite = GameManager.instance.fifthTeam.logo;
     }
+    public void moveTeams()
+    {
+
+    }
+
 }

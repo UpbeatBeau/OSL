@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Going Ghost
   m_EditorClassIdentifier: 
   teamName: Going Ghost
-  teamColor: {r: 0.7294118, g: 0.62352943, b: 1, a: 0.09803922}
+  teamColor: {r: 0.7294118, g: 0.62352943, b: 1, a: 0.08627451}
   logo: {fileID: 21300000, guid: 318ae7d1a507f3d48885c16eada5c994, type: 3}
   onClock: 0
-  draftedPlayers: []
+  draftedPlayers:
+  - ArchonEevee
   Captain: Sehost

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Underworld
   m_EditorClassIdentifier: 
   teamName: Underworld
-  teamColor: {r: 0.58431375, g: 0.85882354, b: 0.92156863, a: 0.09803922}
+  teamColor: {r: 0.58431375, g: 0.85882354, b: 0.92156863, a: 0.08627451}
   logo: {fileID: 21300000, guid: ef79b628301c28244a102a90351ae560, type: 3}
   onClock: 0
-  draftedPlayers: []
+  draftedPlayers:
+  - Elder
   Captain: Batman

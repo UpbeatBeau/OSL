@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blood Wardens
   m_EditorClassIdentifier: 
   teamName: Blood Wardens
-  teamColor: {r: 0.7882353, g: 0.07058824, b: 0.19215687, a: 0.09803922}
+  teamColor: {r: 0.7882353, g: 0.07058824, b: 0.19215687, a: 0.08627451}
   logo: {fileID: 21300000, guid: 5b477367352642544b8b5ac0cd615723, type: 3}
   onClock: 0
   draftedPlayers: []
