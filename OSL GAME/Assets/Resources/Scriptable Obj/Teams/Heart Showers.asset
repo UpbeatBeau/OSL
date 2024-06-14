@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41938cdb691a5f849b8015ecd00b2981, type: 3}
-  m_Name: Flaming Tanukis
+  m_Name: Heart Showers
   m_EditorClassIdentifier: 
-  teamName: Flaming Tanukis
-  teamColor: {r: 1, g: 0.4117647, b: 0, a: 0.08627451}
-  logo: {fileID: 21300000, guid: 05053f9d4191c6443adac8fec9443bd0, type: 3}
+  teamName: Heart Showers
+  teamColor: {r: 0.96862745, g: 0.9372549, b: 0.5411765, a: 0.08627451}
+  logo: {fileID: 21300000, guid: 1672e5d84052291489e3133d47b19395, type: 3}
   onClock: 0
   draftedPlayers:
-  - AmericanTangents
-  Captain: Dastfer
+  - Elder
+  Captain: Batman

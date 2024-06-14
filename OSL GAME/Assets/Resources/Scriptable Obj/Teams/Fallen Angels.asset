@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41938cdb691a5f849b8015ecd00b2981, type: 3}
-  m_Name: Far Out
+  m_Name: Fallen Angels
   m_EditorClassIdentifier: 
-  teamName: Far Out
-  teamColor: {r: 0.101960786, g: 0.7372549, b: 0.6627451, a: 0.08627451}
-  logo: {fileID: 21300000, guid: 389115275de82884684086d39c1d64d8, type: 3}
+  teamName: Fallen Angels
+  teamColor: {r: 0.21176471, g: 0.07450981, b: 0.3529412, a: 0.08627451}
+  logo: {fileID: 21300000, guid: efd4014af33f7224799f8a46d6ca68cb, type: 3}
   onClock: 0
   draftedPlayers: []
   Captain: Dest
