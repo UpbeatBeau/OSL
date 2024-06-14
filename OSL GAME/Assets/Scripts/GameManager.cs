@@ -79,10 +79,24 @@ public class GameManager : MonoBehaviour
             {
                 t.draftedPlayers.Clear();
                 TextMeshProUGUI listofdrafted;
-                //string captain;
-                listofdrafted = draftTeam.gameObject.transform.Find(t.teamName.Trim()).GetComponent<TextMeshProUGUI>();
-                //captain = t.Captain;
-                listofdrafted.text = " ";
+                TextMeshProUGUI captainofTeam;
+                Transform checkfornull;
+
+
+                for (int i = 1; i < 17; i++)
+                {
+                    checkfornull = draftTeam.gameObject.transform.Find(("Draft Spot " + i) + "/" + t.teamName.Trim());
+                    if (checkfornull != null)
+                    {
+                        listofdrafted = checkfornull.GetComponent<TextMeshProUGUI>();
+                        if (listofdrafted.name == t.teamName)
+                        {
+                            listofdrafted.text = " ";
+                            captainofTeam = listofdrafted.gameObject.transform.Find("Captain").GetComponent<TextMeshProUGUI>();
+                            captainofTeam.text = t.Captain;
+                        }
+                    }
+                }
             }
         }
         File.SetAttributes(fileDraft, FileAttributes.Normal);
@@ -201,10 +215,24 @@ public class GameManager : MonoBehaviour
         TextMeshProUGUI listofdrafted;
         List <string> teamList;
         string captain;
-        listofdrafted = draftTeam.transform.Find(TeamOBJ).GetComponent<TextMeshProUGUI>();
-        captain = man.currentTeam.Captain;
+        Transform checkfornull;
         teamList = man.currentTeam.draftedPlayers;
-        listofdrafted.text = ListToPlayerText(teamList);
+        for (int i = 1; i < 17; i++)
+        {
+            checkfornull = draftTeam.gameObject.transform.Find(("Draft Spot " + i) + "/" + TeamOBJ);
+            if (checkfornull != null)
+            {
+                listofdrafted = checkfornull.GetComponent<TextMeshProUGUI>();
+                if (listofdrafted.name == TeamOBJ)
+                {
+                    listofdrafted.text = ListToPlayerText(teamList);
+                }
+            }
+        }
+        //listofdrafted = draftTeam.transform.Find(TeamOBJ).GetComponent<TextMeshProUGUI>();
+        //captain = man.currentTeam.Captain;
+        //teamList = man.currentTeam.draftedPlayers;
+        //listofdrafted.text = ListToPlayerText(teamList);
         Debug.Log(lastDrafted[0].playerName);
        
     }

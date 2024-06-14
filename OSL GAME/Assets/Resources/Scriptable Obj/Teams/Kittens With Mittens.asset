@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamName: Kittens With Mittens
   teamColor: {r: 1, g: 0.16862746, b: 0.8745098, a: 0.08627451}
-  logo: {fileID: 21300000, guid: 26e45acdf57e48040b4947ea3f02dca7, type: 3}
+  logo: {fileID: 21300000, guid: de89c525a0aae3d41b1953030858d3f9, type: 3}
   onClock: 0
   draftedPlayers:
   - TwTvDraidenSmite
